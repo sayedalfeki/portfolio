@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sayed Elfeki | Flutter Developer</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f6f8; color:#333;}
+    header {
+      background: linear-gradient(90deg,#4facfe,#00f2fe);
+      color:white; text-align:center; padding:60px 20px; border-radius:0 0 40px 40px;
+    }
+    header h1 {margin:0; font-size:2.8rem;}
+    header p {font-size:1.3rem; margin-top:10px;}
+
+    main {max-width:1000px; margin:auto; padding:40px 20px;}
+    section {margin-bottom:50px;}
+    h2 {color:#444; margin-bottom:20px; border-bottom:3px solid #eee; padding-bottom:8px; font-size:1.6rem;}
+
+    .about p {font-size:1.1rem; line-height:1.6;}
+
+    .skills span {
+      display:inline-block; background:#e3f2fd; color:#1565c0; padding:8px 15px;
+      margin:5px; border-radius:20px; font-size:0.95rem; font-weight:500;
+    }
+
+    .projects {display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;}
+    .card {
+      background:white; padding:20px; border-radius:15px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+    .card:hover {transform: translateY(-5px);}
+    .card h3 {margin-top:0; color:#2196f3;}
+
+    .services ul {list-style:none; padding:0;}
+    .services li {
+      background:#fff3e0; padding:12px 15px; margin:8px 0;
+      border-radius:10px; font-size:1rem;
+    }
+
+    footer {
+      background:#111; color:#fff; text-align:center; padding:25px;
+      border-radius:30px 30px 0 0; margin-top:50px;
+    }
+    footer a {color:#00f2fe; text-decoration:none; margin:0 10px; font-weight:500;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="name">Sayed Elfeki</h1>
+    <p id="title">Flutter Developer</p>
+  </header>
+
+  <main>
+    <section class="about">
+      <h2>About Me</h2>
+      <p id="about">...</p>
+    </section>
+
+    <section class="skills">
+      <h2>Skills</h2>
+      <div id="skills"></div>
+    </section>
+
+    <section class="projects">
+      <h2>Projects</h2>
+      <div id="projects"></div>
+    </section>
+
+    <section class="services">
+      <h2>Services</h2>
+      <ul id="services"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p id="email"></p>
+    <p id="phones"></p>
+    <p>
+      💻 <a id="github" href="#">GitHub</a> | 
+      🔗 <a id="linkedin" href="#">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    const defaultData = {
+      name: "Sayed Elfeki",
+      title: "Flutter Developer",
+      about: "Flutter developer متخصص في بناء تطبيقات موبايل بواجهات أنيقة وتجربة مستخدم سلسة. خبرة مع قواعد بيانات SQL وNoSQL.",
+      skills: ["Dart","Flutter","State Management","Isar","SQLite","Firebase","REST APIs","Git"],
+      projects: [
+        {name:"E-commerce App", description:"تطبيق بيع منتجات مع سلة وAuthentication.", tech:"Flutter, Isar"},
+        {name:"Task Manager", description:"تطبيق لتنظيم المهام مع إشعارات.", tech:"Flutter, SQLite, Firebase"}
+      ],
+      services: [
+        "بناء تطبيقات موبايل بـ Flutter",
+        "ربط التطبيقات بـ REST APIs / Firebase",
+        "تحسين الأداء وتجربة المستخدم"
+      ],
+      email: "selfeki207@gmail.com",
+      phones: ["01117343633","01068907614"],
+      github: "https://github.com/sayedalfeki",
+      linkedin: "https://linkedin.com/in/sayedalfeki"
+    };
+
+    const data = JSON.parse(localStorage.getItem('portfolioData')) || defaultData;
+
+    document.getElementById('name').innerText = data.name;
+    document.getElementById('title').innerText = data.title;
+    document.getElementById('about').innerText = data.about;
+    document.getElementById('skills').innerHTML = data.skills.map(s => `<span>${s}</span>`).join("");
+    document.getElementById('projects').innerHTML = data.projects.map(p => `
+      <div class="card">
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
+        <p><b>Tech:</b> ${p.tech}</p>
+      </div>`).join("");
+    document.getElementById('services').innerHTML = data.services.map(s => `<li>${s}</li>`).join("");
+    document.getElementById('email').innerHTML = `📧 <a href="mailto:${data.email}" style="color:#00f2fe;">${data.email}</a>`;
+    document.getElementById('phones').innerText = "📞 " + data.phones.join(" / ");
+    document.getElementById('github').href = data.github;
+    document.getElementById('linkedin').href = data.linkedin;
+  </script>
+</body>
+</html>
+
